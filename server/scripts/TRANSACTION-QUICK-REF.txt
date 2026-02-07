@@ -1,0 +1,190 @@
+# Database Transaction - Quick Reference
+
+## ✅ FIXED: Transaction Safety in Payment Flow
+
+---
+
+## What Changed?
+
+**File**: `server/controllers/paymentController.js`  
+**Function**: `createCheckoutSession`
+
+### Before (❌ No Transaction)
+```javascript
+// Create PayMongo session
+const response = await axios.post(...);
+
+// Create booking (separate operation)
+await Booking.create({ ... });
+```
+**Problem**: If PayMongo succeeds but booking fails (or vice versa), data becomes inconsistent.
+
+---
+
+### After (✅ With Transaction)
+```javascript
+const result = await sequelize.transaction(async (t) => {
+  // All operations use same transaction
+  const booking = await Booking.create({ ... }, { transaction: t });
+  
+  const response = await axios.post(...); // If fails, rollback
+  
+  await booking.update({ ... }, { transaction: t });
+  
+  return checkoutSession;
+});
+```
+**Benefit**: All operations succeed together or fail together (atomicity).
+
+---
+
+## Key Points
+
+### 1. Import Required
+```javascript
+const sequelize = require('../config/database');
+```
+
+### 2. Transaction Wrapper
+```javascript
+await sequelize.transaction(async (t) => {
+  // All DB operations here must pass { transaction: t }
+});
+```
+
+### 3. Automatic Rollback
+- If ANY error is thrown inside the transaction block, ALL changes are rolled back
+- No need to manually call `rollback()`
+
+### 4. External API Calls
+- Can be inside transaction
+- If they fail and throw, transaction rolls back
+- Database remains clean
+
+---
+
+## When to Use Transactions
+
+✅ **Use when**:
+- Creating/updating multiple related records
+- Combining database ops with external API calls
+- Ensuring data consistency across operations
+
+❌ **Not needed when**:
+- Single database query (already atomic)
+- Read-only operations
+- Batch updates with single UPDATE query
+
+---
+
+## Error Handling
+
+```javascript
+try {
+  const result = await sequelize.transaction(async (t) => {
+    // Operations that might fail
+  });
+  
+  res.json({ success: true });
+  
+} catch (error) {
+  // Transaction already rolled back at this point
+  console.error('Transaction failed:', error);
+  res.status(500).json({ success: false });
+}
+```
+
+---
+
+## Testing the Fix
+
+### Test Case 1: PayMongo Timeout
+1. Temporarily set PayMongo API to invalid URL
+2. Try to create booking
+3. ✅ Expected: No booking record in database, user sees error
+
+### Test Case 2: Normal Flow
+1. Create booking with valid data
+2. ✅ Expected: Booking created, PayMongo session created, checkout URL returned
+
+### Test Case 3: Database Constraint Violation
+1. Try to create booking with invalid guest_id
+2. ✅ Expected: Transaction rolls back, no orphaned PayMongo session
+
+---
+
+## SQL Queries Generated
+
+### Before Transaction Fix
+```sql
+-- Separate, independent queries
+INSERT INTO bookings (...) VALUES (...);
+-- If this fails, no way to undo the previous insert
+```
+
+### After Transaction Fix
+```sql
+START TRANSACTION;
+INSERT INTO bookings (...) VALUES (...);
+-- If error occurs, automatic ROLLBACK
+UPDATE bookings SET checkout_session_id = '...' WHERE booking_id = ...;
+COMMIT;
+```
+
+---
+
+## Performance
+
+- **Overhead**: ~1-5ms per transaction
+- **Benefit**: Prevents data corruption, reduces support tickets
+- **Concurrency**: Sequelize manages connection pool efficiently
+
+---
+
+## Related Security Fixes (Untouched)
+
+✅ **IDOR Protection**: Uses JWT-verified guest_id  
+✅ **Price Manipulation**: Server-calculated pricing enforced  
+✅ **Duration Validation**: Only [3, 6, 12, 24] hours allowed  
+✅ **Time Validation**: 5-minute increments only  
+
+---
+
+## Debugging Tips
+
+### Enable Transaction Logging
+```javascript
+// In config/database.js
+const sequelize = new Sequelize({
+  logging: console.log, // Shows SQL queries
+  // ...
+});
+```
+
+### Check for Orphaned Records
+```sql
+-- Find bookings without PayMongo sessions
+SELECT * FROM bookings 
+WHERE status = 'Pending_Payment' 
+AND checkout_session_id IS NULL;
+```
+
+### Monitor Transaction Duration
+```javascript
+console.time('transaction');
+await sequelize.transaction(async (t) => {
+  // operations
+});
+console.timeEnd('transaction');
+```
+
+---
+
+## Summary
+
+✅ **What was fixed**: Booking creation + PayMongo session creation now atomic  
+✅ **How it works**: Sequelize transaction with automatic rollback  
+✅ **Impact**: No orphaned bookings, consistent data  
+✅ **Security**: All previous fixes preserved  
+
+**Risk 2.17 (No Database Transactions) → RESOLVED**

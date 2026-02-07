@@ -1,0 +1,157 @@
+{
+  "rooms": [
+    {
+      "type": "Value",
+      "rates": {
+        "3_hours": 450,
+        "6_hours": 750,
+        "12_hours": 1150,
+        "24_hours": 1800
+      }
+    },
+    {
+      "type": "Standard",
+      "rates": {
+        "3_hours": 550,
+        "6_hours": 850,
+        "12_hours": 1250,
+        "24_hours": 1900
+      }
+    },
+    {
+      "type": "Deluxe",
+      "rates": {
+        "3_hours": 650,
+        "6_hours": 950,
+        "12_hours": 1350,
+        "24_hours": 2100
+      }
+    },
+    {
+      "type": "Superior",
+      "rates": {
+        "3_hours": 1195,
+        "6_hours": 1595,
+        "12_hours": 2495,
+        "24_hours": 3495
+      }
+    }
+  ],
+  "menu": {
+    "all_day_breakfast": [
+      { "name": "Tapsilog", "price": 85 },
+      { "name": "Longsilog", "price": 85 },
+      { "name": "Tosilog", "price": 85 },
+      { "name": "Hotsilog", "price": 85 },
+      { "name": "Hamsilog", "price": 85 },
+      { "name": "Ham Sandwich", "price": 85 },
+      { "name": "Egg Sandwich", "price": 85 },
+      { "name": "Ham & Egg Sandwich", "price": 95 },
+      { "name": "Family House Clubhouse", "price": 120 }
+    ],
+    "rice_meals": [
+      { "name": "Beef Bulgogi", "price": 175 },
+      { "name": "Beef Tapa", "price": 175 },
+      { "name": "Chicken Tocino", "price": 165 },
+      { "name": "Hungarian", "price": 175 },
+      { "name": "Chicken Poppers", "price": 165 },
+      { "name": "Extra Rice", "price": 40 },
+      { "name": "Extra Egg", "price": 30 }
+    ],
+    "pasta": [
+      { "name": "Chicken Alfredo", "price": 175 },
+      { "name": "Tuna Pesto", "price": 165 },
+      { "name": "Meaty Red Sauce", "price": 215 }
+    ],
+    "snacks": [
+      { "name": "Chicken Balls", "price": 70 },
+      { "name": "Squid Balls", "price": 70 },
+      { "name": "Kikiam", "price": 100 },
+      { "name": "Cheese Sticks", "price": 105 },
+      { "name": "Hash Brown", "price": 45 },
+      { "name": "Thick Cut Fries", "price": 105 },
+      { "name": "Chicken Poppers", "price": 165 },
+      { "name": "Nachos", "price": 135 },
+      { "name": "Cup noodles", "price": 50 },
+      { "name": "Pringles", "price": 55 },
+      { "name": "Chips", "price": 55 },
+      { "name": "Piknik", "price": 60 }
+    ],
+    "cold_brew": [
+      { "name": "16oz Cold Brew", "price": 95 },
+      { "name": "16oz Milk Cold Brew", "price": 115 },
+      { "name": "16oz OJ Cold Brew", "price": 115 },
+      { "name": "16oz Vietnamese", "price": 115 },
+      { "name": "16oz Spanish", "price": 135 },
+      { "name": "16oz Mocha", "price": 135 },
+      { "name": "16oz Caramel", "price": 145 },
+      { "name": "16oz Hazelnut", "price": 145 },
+      { "name": "16oz Vanilla", "price": 145 },
+      { "name": "16oz White Mocha", "price": 145 },
+      { "name": "22oz Cold Brew", "price": 115 },
+      { "name": "22oz Milk Cold Brew", "price": 145 },
+      { "name": "22oz OJ Cold Brew", "price": 145 },
+      { "name": "22oz Vietnamese", "price": 145 },
+      { "name": "22oz Spanish", "price": 165 },
+      { "name": "22oz Mocha", "price": 165 },
+      { "name": "22oz Caramel", "price": 175 },
+      { "name": "22oz Hazelnut", "price": 175 },
+      { "name": "22oz Vanilla", "price": 175 },
+      { "name": "22oz White Mocha", "price": 175 }
+    ],
+    "frappe": [
+      { "name": "22oz Blueberry Cream", "price": 165 },
+      { "name": "22oz Strawberry Cream", "price": 165 },
+      { "name": "22oz Chocolate Chip", "price": 185 },
+      { "name": "22oz Java Chip", "price": 185 },
+      { "name": "22oz Caramel", "price": 195 },
+      { "name": "22oz Matcha", "price": 200 }
+    ],
+    "refreshers": [
+      { "name": "16oz Honey Citron", "price": 120 },
+      { "name": "16oz Passionfruit", "price": 120 },
+      { "name": "16oz Blueberry Tea", "price": 115 },
+      { "name": "16oz Strawberry Tea", "price": 115 },
+      { "name": "22oz Honey Citron", "price": 145 },
+      { "name": "22oz Passionfruit", "price": 145 },
+      { "name": "22oz Blueberry Tea", "price": 135 },
+      { "name": "22oz Strawberry Tea", "price": 135 }
+    ],
+    "hot_drinks": [
+      { "name": "16oz Brewed Coffee", "price": 95 },
+      { "name": "16oz Latte", "price": 115 },
+      { "name": "16oz Vietnamese", "price": 115 },
+      { "name": "16oz Spanish", "price": 135 },
+      { "name": "16oz Mocha", "price": 135 },
+      { "name": "16oz Caramel", "price": 145 },
+      { "name": "16oz Hazelnut", "price": 145 },
+      { "name": "16oz Vanilla", "price": 145 },
+      { "name": "16oz Ube", "price": 125 },
+      { "name": "16oz Matcha", "price": 145 },
+      { "name": "16oz Signature Chocolate", "price": 135 }
+    ],
+    "others": [
+      { "name": "Bottled Water", "price": 30 },
+      { "name": "San Mig Light", "price": 65 },
+      { "name": "Red Horse", "price": 75 },
+      { "name": "Soju (Strawberry)", "price": 140 },
+      { "name": "Soju (Peach)", "price": 140 },
+      { "name": "Softdrinks (Coke/Sprite/Royal)", "price": 50 }
+    ]
+  },
+  "policies": {
+    "extra_fees": [
+      { "item": "Extension (Value)", "price": 150, "unit": "per hour" },
+      { "item": "Extension (Standard)", "price": 160, "unit": "per hour" },
+      { "item": "Extension (Deluxe)", "price": 170, "unit": "per hour" },
+      { "item": "Extension (Superior)", "price": 200, "unit": "per hour" },
+      { "item": "Additional Adult", "price": 200, "unit": "per head" },
+      { "item": "Additional Child", "price": 150, "unit": "per head" }
+    ],
+    "penalties": [
+      { "item": "Bed Sheets", "price": 800 },
+      { "item": "Smoking", "price": 1500 },
+      { "item": "Towel", "price": 150 }
+    ]
+  }
+}

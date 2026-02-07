@@ -1,0 +1,7 @@
+The controllers folder contains the "brain" or business logic of your application.
+
+Request Handling: Controllers are functions that receive incoming requests from the routes, process them, and decide what response to send back to the client.
+
+Database Interaction: This is where you write the logic to fetch, create, update, or delete data from your database (using Sequelize or raw SQL).
+
+Data Processing: Before sending a response, a controller might calculate totals, format data, or handle errors if something goes wrong during a database operation.

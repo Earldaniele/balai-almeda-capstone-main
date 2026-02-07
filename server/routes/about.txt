@@ -1,0 +1,7 @@
+The routes folder serves as the "map" or directory for your API.
+
+Endpoint Definition: It defines the URL paths (e.g., /api/auth/login or /api/public/rooms) and the HTTP methods (GET, POST, PUT, DELETE) the server should listen for.
+
+Connecting Routes to Logic: The route file doesn't contain the actual logic; instead, it simply tells Express: "If someone hits this URL, call this specific function in the Controller".
+
+Applying Security: This is where you "attach" middleware to specific routes, ensuring that certain endpoints are protected by authentication.

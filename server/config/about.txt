@@ -1,0 +1,7 @@
+This folder acts as the central storage for settings that your application needs to function.
+
+Database Settings: Contains scripts or configuration files (like db.js) that define how to connect to your MySQL database.
+
+Environment Variables: Stores sensitive data like API keys, database credentials, and JWT secrets in a way that’s easy to manage across different environments (e.g., development vs. production).
+
+Global Constants: Holds values that don't change often, such as your server's port number or external service URLs.

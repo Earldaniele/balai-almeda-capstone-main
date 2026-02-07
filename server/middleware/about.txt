@@ -1,0 +1,7 @@
+Middleware functions act as "bridges" or security guards that execute during the request-response cycle before a request reaches your controller.
+
+Authentication & Authorization: Verifies if a user is logged in (checking for a valid JWT token) or has the right permissions (e.g., Guest vs. Admin) to access a specific route.
+
+Data Validation: Checks if the data sent by a user (like in a Login form) is in the correct format before the server tries to process it.
+
+Global Tasks: Handles common tasks like logging every request that comes in or parsing JSON data so the server can read it.
